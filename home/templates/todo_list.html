@@ -1,0 +1,55 @@
+
+	{% extends "base.html" %}
+	{% block content %}
+	{% if todos %}
+	<div class="card">
+  		<div class="card-body">
+  			<h3 class="align-center"> Your Todo List
+  				<a href="{% url 'home:add_todo' %}" class="float-right btn btn-primary btn-md active">Add Item</a>
+  			</h3>
+ 		 </div>
+	</div>
+		{% for obj in todos %}
+			<div class="accordion" id="accordionExample">
+				<div class="card shadows mt-2 mb-2">
+			    <div class="card-header" id="headingThree">
+			    	
+			      <h1 class="mb-0">
+			        <button class="btn btn btn-light btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			          	<h4>{{ obj.title }} <a  class="btn btn-sm btn-outline-info">{{ obj.date }}</a>
+			          		<div class="float-right col-sm-4"> 
+				 				<a class="btn btn-secondary btn-sm" href="{% url 'home:update_todo' obj.id %}">Update Todo</a>
+				  				<a class="btn btn-danger btn-sm" href="{% url 'home:delete_todo' obj.id %}">Delete</a>
+							</div>
+			          	</h4><!--<div class="btn btn-sm btn-danger">{{ obj.date }}</div>-->
+			        </button>
+			      </h1>
+			      
+			    </div>
+			    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+			      <div class="card-body">
+			    		{{ obj.description }}
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+		<!--<div id="list-example" class="list-group">
+			    <h5 class="col-sm-4 list-group-item list-group-item-action">{{ obj.title }}</h5>
+			    <div class="col-sm-4"> 
+			 		<a class="btn btn-secondary btn-sm" href="{% url 'home:update_todo' obj.id %}">Update Todo</a>
+			  		<a class="btn btn-danger btn-sm" href="{% url 'home:delete_todo' obj.id %}">Delete</a>
+				</div>
+			</div>
+			<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+			  <a id="list-item-1">{{ obj.description }}</a>
+			  <p>...</p>
+			</div>
+			<p ><strong>Title: {{ obj.title }}</strong></p>
+		<p>Description: {{ obj.description }}</p>
+		<p>Date: {{ obj.date }}</p>-->
+		{% endfor %}
+	{% else %}
+	<p><strong>No Todos in the list</strong></p>
+	{% endif %}
+	{% endblock content %}
