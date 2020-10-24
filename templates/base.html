@@ -12,10 +12,11 @@
 <body>
 	<div class="container">
 		<nav class="navbar navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">TODO App</a>
+			<h5 class="navbar-brand" href="{% url 'home:todo_list' %}">Todo App</h5>
 			<div class="col-sm-4">
-				<button class="btn btn-dark" type="button">LogIn</button>
-    			<button class="btn btn-light" type="button">Register New User</button>    		
+				<a class="btn btn-dark" type="button" href="{% url 'user:login' %}">LogIn</a>
+    			<a class="btn btn-light" type="button" href="{% url 'user:register' %}">Register New User</a>   
+
     		</div>
 		</nav>
 		{% block content %}
