@@ -5,8 +5,9 @@ from home.forms import TodoForm
 
 
 def home_view(request):
+
 	todos = Todo.objects.all()
-	context = {"todos" : todos}
+	context = {"todos" : todos, "username": request.user}
 	return render(request, "todo_list.html", context)
 
 def add_todo(request):
