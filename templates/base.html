@@ -12,18 +12,22 @@
 <body>
 	<div class="container">
 		<nav class="navbar navbar-dark bg-dark">
-			<h5 class="navbar-brand" href="{% url 'home:todo_list' %}">Todo App</h5>
+			<h5 class="navbar-brand " href="{% url 'home:todo_list' %}">Todo App</h5>
 			<div class="col-sm-4">
-				<a class="btn btn-dark" type="button" href="{% url 'user:login' %}">LogIn</a>
-    			<a class="btn btn-light" type="button" href="{% url 'user:register' %}">Register New User</a>   
 
-    		</div>
+				{% if user.username %}
+  				<a class="float-right btn btn-info btn-lg">Hi! {{ user.username }}</a>  
+  				<a class="float-right btn btn-dark btn-lg" href="{% url 'user:logout' %}">Logout</a>  
+
+  			</div>
 		</nav>
-		{% block content %}
+  		{% block content %}
 
 		{% endblock content %}
+  		{% else %}				
+  			<a class="btn btn-light" type="button" href="{% url 'user:login' %}">Login</a>   
+    		<a class="btn btn-light" type="button" href="{% url 'user:register' %}">Register New User</a>   
+    	{% endif %}
 	</div>
-	
 </body>
-
 </html>
