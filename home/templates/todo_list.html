@@ -5,28 +5,50 @@
 	<div class="card">
   		<div class="card-body">
   			<h4 class=""> Your Todo List
-  				
-
+  				<a class="btn btn-dark">Normal</a>
+  				<a class="btn btn-warning">past</a>
+  				<a class="btn btn-success">Prior</a>
   			<a href="{% url 'home:add_todo' %}" class="float-right btn btn-primary btn-md ">Add Item</a>		
   			</h4>
  		 </div>
 	</div>
 		{% for obj in todos %}
+        	{% if obj.is_greater_priority  and not obj.date < todays_date %}
 			<div class="accordion" id="accordionExample">
 				<div class="card shadows mt-2 mb-2">
-			    <div class="card-header" id="headingThree">
-			    	
+			    <div class="card-header" id="headingThree">	
 			      <h4 class="mb-0">
-			        <button class="btn btn btn-light btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-			          	<h5>{{ obj.title }} <a  class="btn btn-sm btn-outline-info">{{ obj.date }}</a>
+			        <button class="btn btn btn-success btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			          	<h5>{{ obj.title }} <a  class="btn btn-sm btn-light">{{ obj.date }}</a>
 			          		<div class="float-right col-sm-3"> 
 				 				<a class="btn btn-secondary btn-sm" href="{% url 'home:update_todo' obj.id %}">Update Todo</a>
 				  				<a class="btn btn-danger btn-sm" href="{% url 'home:delete_todo' obj.id %}">Delete</a>
 							</div>
 			          	</h5><!--<div class="btn btn-sm btn-danger">{{ obj.date }}</div>-->
 			        </button>
-			      </h4>
-			      
+			      </h4>			          	
+			    </div>
+			    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+			      <div class="card-body">
+			    		{{ obj.description }}
+			      </div>
+			    </div>
+			  </div>
+			</div>			
+            {% elif obj.date < todays_date %}
+			<div class="accordion" id="accordionExample">
+				<div class="card shadows mt-2 mb-2">
+			    <div class="card-header" id="headingThree">	
+			      <h4 class="mb-0">
+			        <button class="btn btn btn-warning btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			          	<h5>{{ obj.title }} <a  class="btn btn-sm btn-light">{{ obj.date }}</a>
+			          		<div class="float-right col-sm-3"> 
+				 				<a class="btn btn-secondary btn-sm" href="{% url 'home:update_todo' obj.id %}">Update Todo</a>
+				  				<a class="btn btn-danger btn-sm" href="{% url 'home:delete_todo' obj.id %}">Delete</a>
+							</div>
+			          	</h5><!--<div class="btn btn-sm btn-danger">{{ obj.date }}</div>-->
+			        </button>
+			      </h4>			          	
 			    </div>
 			    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 			      <div class="card-body">
@@ -35,23 +57,46 @@
 			    </div>
 			  </div>
 			</div>
-
-		<!--<div id="list-example" class="list-group">
-			    <h5 class="col-sm-4 list-group-item list-group-item-action">{{ obj.title }}</h5>
-			    <div class="col-sm-4"> 
-			 		<a class="btn btn-secondary btn-sm" href="{% url 'home:update_todo' obj.id %}">Update Todo</a>
-			  		<a class="btn btn-danger btn-sm" href="{% url 'home:delete_todo' obj.id %}">Delete</a>
-				</div>
+			{% else %}
+			<div class="accordion" id="accordionExample">
+				<div class="card shadows mt-2 mb-2">
+			    <div class="card-header" id="headingThree">	
+			      <h4 class="mb-0">
+			        <button class="btn btn btn-dark btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			          	<h5>{{ obj.title }} <a  class="btn btn-sm btn-light">{{ obj.date }}</a>
+			          		<div class="float-right col-sm-3"> 
+				 				<a class="btn btn-secondary btn-sm" href="{% url 'home:update_todo' obj.id %}">Update Todo</a>
+				  				<a class="btn btn-danger btn-sm" href="{% url 'home:delete_todo' obj.id %}">Delete</a>
+							</div>
+			          	</h5><!--<div class="btn btn-sm btn-danger">{{ obj.date }}</div>-->
+			        </button>
+			      </h4>			          	
+			    </div>
+			    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+			      <div class="card-body">
+			    		{{ obj.description }}
+			      </div>
+			    </div>
+			  </div>
 			</div>
-			<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
-			  <a id="list-item-1">{{ obj.description }}</a>
-			  <p>...</p>
-			</div>
-			<p ><strong>Title: {{ obj.title }}</strong></p>
-		<p>Description: {{ obj.description }}</p>
-		<p>Date: {{ obj.date }}</p>-->
+			{% endif %}
 		{% endfor %}
 	{% else %}
-	<p><strong>No Todos in the list</strong></p>
+	<div class="card">
+  		<div class="card-body">
+  			<h4 class=""> Your Todo List			
+  			<a href="{% url 'home:add_todo' %}" class="float-right btn btn-primary btn-md ">Add Item</a>		
+  			</h4>
+ 		 </div>
+	</div>
+	<div class="alert alert-success" role="alert">
+  		<h4 class="alert-heading">No Todos in the list!</h4>
+  			<p>Hey there! Your Todo-List is empty. 
+  			You can click on above Add Todo button for listing your Todo Activities.</p>
+  		<hr>
+  		<p class="mb-0">Just add and start using the app for making sure about your todos.</p>
+	</div>
+	<p><strong></strong></p>
 	{% endif %}
 	{% endblock content %}
+
