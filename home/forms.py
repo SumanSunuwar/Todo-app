@@ -10,4 +10,4 @@ from django.db.models import fields
 class TodoForm(forms.ModelForm):
 	class Meta:
 		model = Todo
-		fields = ("title", "description", "date", "todo_image")
+		fields = ("title", "description", "date", "todo_image", "is_greater_priority", "profile",)
