@@ -1,5 +1,24 @@
-<form method="POST" action="">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Sign Up">
-</form>
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card-header">
+	<div class="container">
+ 		<div class="row justify-content-center">
+			<div class="card text-white bg-dark " style="max-width: 60rem;">
+  				<div class="card-header text-center">Register New User</div>
+  				<div class="card-body">
+					<form method="POST" action="">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<div class="text-center">			
+							<input class="btn btn-primary btn-sm " type="submit" value="Sign Up">
+						</div>  
+					</form>
+				</div>
+ 			</div>
+ 		</div>
+	</div>
+
+</div>
+
+{% endblock content %}
