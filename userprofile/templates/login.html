@@ -1,5 +1,30 @@
-<form method="POST" action="">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Log In">
-</form>
+{% extends "base.html" %}
+{% block content %}
+
+ 
+<div class="card-header text-center">
+<div class="container">
+ 	<div class="row justify-content-center">
+	<div class="card text-center text-white bg-dark " style="max-width: 20rem;">
+  		<div class="card-header text-center">Login</div>
+  		<div class="card-body">
+			<form method="POST" action="">
+				{% csrf_token %}
+				{{ form.as_p }}
+			<div class="checkbox mb-3">
+   				<label>
+      			<input type="checkbox" value="remember-me"> Remember me
+    			</label>
+  			</div>
+			<div class="">
+				<input class="btn btn-primary btn-sm " type="submit" value="Log In">
+				<a class="btn btn-danger btn-sm" type="button" href="{% url 'user:register' %}">Register</a> 
+			</div>  
+			</form>
+			</div>
+	 	</div>
+	 	</div>
+	</div>
+
+	</div>
+	{% endblock content %}
