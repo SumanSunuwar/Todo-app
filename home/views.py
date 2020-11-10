@@ -28,7 +28,7 @@ def update_todo(request,todo_id):
 	if form.is_valid():
 		form.save()
 		return HttpResponseRedirect(reverse('home:todo_list'))
-	return render(request, "form.html", {"form" : form})
+	return render(request, "form.html", {"form" : form, "item_obj" : todo})
 
 @login_required(login_url='/login/')
 def delete_todo(request, todo_id):	# passing the request and POST from the delete key in indext.html
