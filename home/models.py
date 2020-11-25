@@ -1,5 +1,8 @@
 from django.db import models
-from userprofile.models import Profile
+from django.contrib.auth.models import User
+
+#from userprofile.models import Profile
+
 # Create your models here.
 #Let's create an object > Todo object
 # fields : title , description, date
@@ -9,7 +12,7 @@ class Todo(models.Model):
 	date = models.DateField(null=True,blank=True)
 	todo_image = models.ImageField(upload_to="upload/todo",blank=True, null=True)
 	is_greater_priority = models.BooleanField(default=False)
-	profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
 	def __str__(self):
 		return self.title	
