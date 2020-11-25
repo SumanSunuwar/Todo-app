@@ -5,10 +5,13 @@ from home.models import Todo
 from home.forms import TodoForm
 import datetime
 from datetime import date
+from django.contrib.auth.models import User
+
 
 @login_required(login_url='/login/')
 def home_view(request):
-	todo = Todo.objects.all()
+	users = User.objects.get(id=request.user.id)
+	todo = users.todo_set.all()
 	context = {"todos" : todo, "user": request.user, "todays_date" : datetime.date.today()}
 	return render(request, "todo_list.html", context)
 
