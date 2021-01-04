@@ -1,0 +1,42 @@
+[33mcommit d6a1fbc2897dafb1f44ba7ec2a97e84f73a293b7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Suman Sunuwar <jaycessunuwar@gmail.com>
+Date:   Wed Nov 11 01:08:06 2020 +0545
+
+    added some designs to form
+
+[1mdiff --git a/userprofile/templates/signup.html b/userprofile/templates/signup.html[m
+[1mindex a05864b..0b2b819 100644[m
+[1m--- a/userprofile/templates/signup.html[m
+[1m+++ b/userprofile/templates/signup.html[m
+[36m@@ -1,5 +1,24 @@[m
+[31m-<form method="POST" action="">[m
+[31m-	{% csrf_token %}[m
+[31m-	{{ form.as_p }}[m
+[31m-	<input type="submit" value="Sign Up">[m
+[31m-</form>[m
+\ No newline at end of file[m
+[32m+[m[32m{% extends "base.html" %}[m
+[32m+[m[32m{% block content %}[m
+[32m+[m
+[32m+[m[32m<div class="card-header">[m
+[32m+[m	[32m<div class="container">[m
+[32m+[m[41m [m		[32m<div class="row justify-content-center">[m
+[32m+[m			[32m<div class="card text-white bg-dark " style="max-width: 60rem;">[m
+[32m+[m[41m  [m				[32m<div class="card-header text-center">Register New User</div>[m
+[32m+[m[41m  [m				[32m<div class="card-body">[m
+[32m+[m					[32m<form method="POST" action="">[m
+[32m+[m						[32m{% csrf_token %}[m
+[32m+[m						[32m{{ form.as_p }}[m
+[32m+[m						[32m<div class="text-center">[m[41m			[m
+[32m+[m							[32m<input class="btn btn-primary btn-sm " type="submit" value="Sign Up">[m
+[32m+[m						[32m</div>[m[41m  [m
+[32m+[m					[32m</form>[m
+[32m+[m				[32m</div>[m
+[32m+[m[41m [m			[32m</div>[m
+[32m+[m[41m [m		[32m</div>[m
+[32m+[m	[32m</div>[m
+[32m+[m
+[32m+[m[32m</div>[m
+[32m+[m
+[32m+[m[32m{% endblock content %}[m
+\ No newline at end of file[m
