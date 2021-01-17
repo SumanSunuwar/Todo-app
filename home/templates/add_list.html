@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card-header">
+	<div class="container">
+ 		<div class="row justify-content-center">
+			<div class="card text-white bg-dark " style="max-width: 80rem;">
+				{% if item_obj %}
+					<div class="card-header bg-info text-center">Update Item</div>
+					<div class="card-body">
+						<form method="POST" action="" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<div class="text-center">			
+							<input class="btn btn-primary btn-sm " type="submit" value="Update" >
+							</div> 
+						</form>
+					</div>
+				{% else %}
+  					<div class="card-header bg-info text-center">Add Item</div>
+					<div class="card-body">
+						<form method="POST" action="" enctype="multipart/form-data">
+							{% csrf_token %}
+							<p>Title: {{ form.title }}</p>
+							<p>User: {{ request.user }}</p>
+							<div class="text-center" >			
+							<input class="btn btn-primary btn-sm " type="submit" value="    Add    " >
+							</div> 
+						</form>
+					</div>
+  				
+				{% endif %}
+
+ 			</div>
+ 		</div>
+	</div>
+</div>
+{% endblock %}
